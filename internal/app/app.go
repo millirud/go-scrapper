@@ -8,6 +8,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/millirud/go-scrapper/config"
+	"github.com/millirud/go-scrapper/internal/controller"
 	"github.com/millirud/go-scrapper/internal/di"
 	"github.com/millirud/go-scrapper/pkg/httpserver"
 )
@@ -21,6 +22,8 @@ func Run(cfg *config.Config) {
 
 	// HTTP Server
 	handler := gin.New()
+
+	controller.NewRouter(handler, Di)
 
 	httpServer := httpserver.New(handler, httpserver.Port(cfg.HTTP.Port))
 
