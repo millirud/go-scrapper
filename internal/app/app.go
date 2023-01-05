@@ -8,15 +8,16 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/millirud/go-scrapper/config"
+	"github.com/millirud/go-scrapper/internal/di"
 	"github.com/millirud/go-scrapper/pkg/httpserver"
-	"github.com/millirud/go-scrapper/pkg/logger"
 )
 
 // Run creates objects via constructors.
 func Run(cfg *config.Config) {
 	var err error
 
-	l := logger.New(cfg.Log.Level, os.Stdout)
+	Di := di.New(cfg)
+	l := Di.Logger
 
 	// HTTP Server
 	handler := gin.New()

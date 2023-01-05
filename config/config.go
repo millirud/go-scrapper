@@ -9,9 +9,10 @@ import (
 type (
 	// Config -.
 	Config struct {
-		App  `yaml:"app"`
-		HTTP `yaml:"http"`
-		Log  `yaml:"logger"`
+		App     `yaml:"app"`
+		HTTP    `yaml:"http"`
+		Log     `yaml:"logger"`
+		Request `yaml:"request"`
 	}
 
 	// App -.
@@ -28,6 +29,12 @@ type (
 	// Log -.
 	Log struct {
 		Level string `env-required:"true" yaml:"log_level"   env:"LOG_LEVEL"`
+	}
+
+	// Request
+	Request struct {
+		Timeout    int64 `env-required:"true" yaml:"request_timeout"`
+		RetryCount int   `env-required:"true" yaml:"retry_count"`
 	}
 )
 
