@@ -1,6 +1,6 @@
 package entity
 
 type HtmlPage struct {
-	Html       string
-	StatusCode int
+	Html       string `json:"html"`
+	StatusCode int    `json:"statusCode"`
 }
