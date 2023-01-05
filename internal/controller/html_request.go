@@ -32,6 +32,7 @@ func (r *htmlRequestRouter) ScrapHtml(c *gin.Context) {
 	var payload ScrapHtml
 
 	if err := c.BindJSON(&payload); err != nil {
+		r.logger.Err(err).Msg("ScrapHtml.Err")
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
@@ -39,9 +40,11 @@ func (r *htmlRequestRouter) ScrapHtml(c *gin.Context) {
 	resp, err := r.HtmlRequestService.Do(payload.Url)
 
 	if err != nil {
+		r.logger.Err(err).Msg("ScrapHtml.Err")
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
 
 	c.JSON(http.StatusOK, resp)
+	// c.Data(http.StatusOK, "text/html; charset=utf-8", []byte(resp.Html))
 }
