@@ -9,5 +9,5 @@ logger:
   log_level: 'debug'
 
 request:
-  request_timeout: 3500
+  request_timeout: 9500
   retry_count: 1

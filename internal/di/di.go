@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/millirud/go-scrapper/config"
+	"github.com/millirud/go-scrapper/internal/repository/cookie_local_storage"
 	"github.com/millirud/go-scrapper/internal/service/request_html"
 	"github.com/millirud/go-scrapper/pkg/logger"
 	"github.com/rs/zerolog"
@@ -24,6 +25,7 @@ func New(cfg *config.Config) *DI {
 			logger,
 			time.Duration(cfg.Request.Timeout)*time.Millisecond,
 			cfg.Request.RetryCount,
+			cookie_local_storage.New(logger),
 		),
 	}
 }

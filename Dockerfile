@@ -1,6 +1,7 @@
-FROM golang:1.20rc2-alpine3.17 as dev
+FROM golang:1.20rc2-buster as dev
 
 WORKDIR /home/app
+
 
 COPY . .
 RUN go mod download
