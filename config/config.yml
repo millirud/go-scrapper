@@ -4,6 +4,8 @@ app:
 
 http:
   port: '8080'
+  read_timeout: 15000
+  write_timeout: 15000
 
 logger:
   log_level: 'debug'

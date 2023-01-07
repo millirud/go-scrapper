@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/millirud/go-scrapper/config"
@@ -25,7 +26,12 @@ func Run(cfg *config.Config) {
 
 	controller.NewRouter(handler, Di)
 
-	httpServer := httpserver.New(handler, httpserver.Port(cfg.HTTP.Port))
+	httpServer := httpserver.New(
+		handler,
+		httpserver.Port(cfg.HTTP.Port),
+		httpserver.ReadTimeout(time.Duration(cfg.HTTP.ReadTimeout)*time.Millisecond),
+		httpserver.WriteTimeout(time.Duration(cfg.HTTP.WriteTimeout)*time.Millisecond),
+	)
 
 	// Waiting signal
 	interrupt := make(chan os.Signal, 1)

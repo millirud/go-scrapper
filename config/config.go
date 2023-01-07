@@ -23,7 +23,9 @@ type (
 
 	// HTTP -.
 	HTTP struct {
-		Port string `env-required:"true" yaml:"port" env:"HTTP_PORT"`
+		Port         string `env-required:"true" yaml:"port" env:"HTTP_PORT"`
+		ReadTimeout  int64  `env-required:"true" yaml:"read_timeout"`
+		WriteTimeout int64  `env-required:"true" yaml:"write_timeout"`
 	}
 
 	// Log -.
