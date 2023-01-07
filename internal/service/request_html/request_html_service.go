@@ -1,6 +1,7 @@
 package request_html
 
 import (
+	"crypto/tls"
 	"time"
 
 	"github.com/go-resty/resty/v2"
@@ -18,7 +19,8 @@ func New(
 
 	client := resty.New().
 		SetTimeout(timeout).
-		SetRetryCount(retryCount)
+		SetRetryCount(retryCount).
+		SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
 
 	return &RequestHtmlService{
 		logger:        logger,
