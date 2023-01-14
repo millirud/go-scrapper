@@ -33,6 +33,8 @@ func Run(cfg *config.Config) {
 		httpserver.WriteTimeout(time.Duration(cfg.HTTP.WriteTimeout)*time.Millisecond),
 	)
 
+	l.Info().Msgf("server started on port %s", cfg.HTTP.Port)
+
 	// Waiting signal
 	interrupt := make(chan os.Signal, 1)
 	signal.Notify(interrupt, os.Interrupt, syscall.SIGTERM)

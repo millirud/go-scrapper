@@ -15,6 +15,7 @@ func New(level string, w io.Writer) *zerolog.Logger {
 
 	l := zerolog.New(w).With().
 		Timestamp().
+		CallerWithSkipFrameCount(zerolog.CallerSkipFrameCount).
 		Logger().
 		Level(lvl)
 
