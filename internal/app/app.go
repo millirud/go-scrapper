@@ -22,7 +22,7 @@ func Run(cfg *config.Config) {
 	l := Di.Logger
 
 	// HTTP Server
-	handler := gin.New()
+	handler := gin.Default()
 
 	controller.NewRouter(handler, Di)
 
@@ -41,7 +41,7 @@ func Run(cfg *config.Config) {
 
 	select {
 	case s := <-interrupt:
-		l.Info().Msgf("app - Run - signal: " + s.String())
+		l.Info().Msgf("app - Run - signal: %s", s.String())
 	case err = <-httpServer.Notify():
 		l.Error().Msgf("app - Run - httpServer.Notify: %w", err)
 	}
